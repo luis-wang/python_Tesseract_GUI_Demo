@@ -5,6 +5,7 @@
 """
    Simple python demo of tesseract-ocr
 """
+
 # https://www.mail-archive.com/pyqt@riverbankcomputing.com/msg20541.html
 # http://pastebin.com/DhPUgrAj
 
