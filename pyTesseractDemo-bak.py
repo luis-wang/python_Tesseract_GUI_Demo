@@ -29,7 +29,6 @@ import libs.settings as sett
 from libs.scene import CustomGraphicsScene
 
 
-
 class MainWindow(QMainWindow, Ui_MainWindow):
     """Class For MainWindow
     """
@@ -69,10 +68,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.lang = lang
 
         self.initialize_tesseract()
-        
-        #加载所有语言
         if self.tesseract:
-            available_languages = tess.get_list_of_langs(self.tesseract, self.api)
+            available_languages = tess.get_list_of_langs(self.tesseract,
+                                                         self.api)
             for lang in available_languages:
                 self.comboBoxLang.addItem(lang, lang)
             current_index = self.comboBoxLang.findData(self.lang)
@@ -115,17 +113,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         image_name = sett.readSetting('images/last_filename')
         if image_name:
             self.image_name = image_name
-            
-        #print '上次保存的图片：image_name = ',image_name
-        #self.load_image(image_name)
-        
-        
-        
-        #这里加载的是通过opencv处理过后的图片
-        from find_text_lines import get_res_img
-        self.load_image(get_res_img())
-        
-        
+        self.load_image(image_name)
         zoom_factor = sett.readSetting('images/zoom_factor')
         self.setZoom(zoom_factor)
 
@@ -250,9 +238,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
     @pyqtSignature('')
     def on_pushButtonLoad_pressed(self):
-        "打开图片的事件"
-        
-        '''
+        """Load Image
+        """
         input_dir = sett.readSetting('images/input_dir')
         image = QFileDialog.getOpenFileName(self,
                     u'打开图片文件',
@@ -265,9 +252,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             return
         self.load_image(image)
         sett.storeSetting('images/input_dir', os.path.dirname(str(image)));
-        '''
-        from find_text_lines import get_res_img
-        self.load_image(get_res_img())
 
     @pyqtSignature('')
     def on_pushButtonRestart_pressed(self):
@@ -278,7 +262,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
     def load_image(self, filename):
         "Load image to scene and create PIX"
-        print '打开图片为:filename = ',filename
         self.scene.clear()
         self.zoomTo1()
         self.image_name = str(filename)  # filename must be c-string
