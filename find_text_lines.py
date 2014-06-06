@@ -1,6 +1,7 @@
 #coding=utf-8
 import cv2
 import numpy as np
+from utils import verticalProjection
 
 
 min_line_hight  = 10        #最小的字体高度
@@ -135,7 +136,7 @@ def get_res_img():
     
     imshow('rect', rect, True)
     
-    
+    print 'verticalProjection = ',verticalProjection(rect)
     
     
     
