@@ -5,13 +5,15 @@ import numpy as np
 
 min_line_hight  = 10        #最小的字体高度
 min_line_space  = 3         #最小的行间距
-dilate_kernel   = (4,4)     #放大时的把字体变得粗一点的核心 ,这个应该根据不同的字体变化
+dilate_kernel   = (2,2)     #放大时的把字体变得粗一点的核心 ,这个应该根据不同的字体变化,这个值不能大于行间距
 
-showimg = False  #控制是不是显示出所有的窗口
+rect_left_margin= 4         #矩形框左边需要左移多少
+rect_top_margin = 3         #上边上移多少
 
-def imshow(title,img):
-    global showimg
-    if showimg:
+
+def imshow(title,img,flag=False):
+    "控制是不是显示出所有的窗口"
+    if flag:
         cv2.imshow(title, img)
 
 
@@ -66,7 +68,9 @@ def get_res_img():
          r'F:\test\word_with_img\wiki.jpg',
          r'F:\test\word_with_img\bigfont.png',
          r'F:\test\word_with_img\wiki2.jpg',
-         r'F:\test\word_with_img\chi-eng.png',]
+         r'F:\test\word_with_img\chi-eng.png',
+         'testimg/text/eng-chi.png',
+         'testimg/text/chi0.png',]
     
     imsrc = cv2.imread(f[-1])
     img = cv2.cvtColor(imsrc, cv2.COLOR_BGR2GRAY)
@@ -75,7 +79,7 @@ def get_res_img():
     imshow("Origin", imsrc)
     
     mw, mh = img.shape[1],img.shape[0]
-    print "长=%s 宽=%s" % (mw, mh)
+    #print "长=%s 宽=%s" % (mw, mh)
     
     #1.二值化
     img = binarize(img)
@@ -93,27 +97,61 @@ def get_res_img():
     kernel = cv2.getStructuringElement(cv2.MORPH_RECT,(w1, h1))  
     img = get_text_area(img, w1,h1, kernel)
 
-    imshow('font rect', img)
+    imshow('font rect', img, False)
     
     #5.画出所有字体矩形的轮廓
     contours = find_text_rects(img)
     #cv2.drawContours(imsrc, contours, -1,(0,0,255),1)
+    
+    #测试时只取其中一个
+    mycontour = contours[5]
+    contours = [contours[5],]
+    
     for cnt in contours:
         x,y,w,h = cv2.boundingRect(cnt)
-        cv2.rectangle(imsrc, (x,y), (x+w,y+h), (100,0,255), 1)
+        cv2.rectangle(imsrc, 
+                      (x-rect_left_margin, y-rect_top_margin), 
+                      (x+w,y+h), 
+                      (100,0,255), 1)
         
-    imshow('found text 111', imsrc)
+    imshow('found text 111', imsrc, False)
+    
+    #6.需要对每个矩形按位置进行排序，再依次分割字体
+    #contours = sorted(contours)
+    #print '2contours = ',contours
+    
+    
+    
+    
+    
+    #7.对矩形框中的文字进行分割
+    x,y,w,h = cv2.boundingRect(mycontour)
+    print 'mycontour position in img: ',x,y,w,h
+    
+    rect = imsrc[y:y+h, x:x+w]
+    
+    print 'rect shape:',rect.shape
+    
+    
+    imshow('rect', rect, True)
+    
+    
+    
+    
+    
+    
+    
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()    
 
-    if showimg:
-        cv2.waitKey(0)
-        cv2.destroyAllWindows()
         
     #把结果图片保存到指定路径，然后返回
     import uuid
-    tmpfile = r'F:\test\tempfiles\%s.jpg'%str(uuid.uuid4())
-    cv2.imwrite(tmpfile, imsrc)
+    #tmpfile = r'F:\test\tempfiles\%s.jpg'%str(uuid.uuid4())
+    tmpfile = r'E:\2kkkkk\ocr\tempfiles\%s.jpg'%str(uuid.uuid4())
     
-    return tmpfile        
+    #cv2.imwrite(tmpfile, imsrc)
+    #return tmpfile        
 
 
 if __name__ == '__main__':

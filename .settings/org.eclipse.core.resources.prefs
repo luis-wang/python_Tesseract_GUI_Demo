@@ -2,3 +2,4 @@ eclipse.preferences.version=1
 encoding//libs/lepttool.py=utf-8
 encoding/find_text_lines.py=utf-8
 encoding/pyTesseractDemo.py=utf-8
+encoding/utils.py=utf8

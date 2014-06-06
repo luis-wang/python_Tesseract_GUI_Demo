@@ -282,6 +282,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.scene.clear()
         self.zoomTo1()
         self.image_name = str(filename)  # filename must be c-string
+        
+        print 'self.image_name = ,',self.image_name
         # Read image with leptonica => create PIX structure and report image
         # size info
         self.pix_image = self.leptonica.pixRead(self.image_name)
