@@ -1,4 +1,8 @@
 #coding=utf-8
+"""
+下一步，怎么把汉字从一行中分割出来 
+
+"""
 import cv2
 import numpy as np
 from utils import verticalProjection
