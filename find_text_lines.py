@@ -62,18 +62,11 @@ def find_text_rects(img):
 def get_res_img():
     "可供别的代码调用的接口"
     f = [
-         r'F:\test\word_with_img\66.jpg',
-         r'F:\test\word_with_img\complicate-eng.png',
-         r'F:\test\word_with_img\text.png',
-         r'F:\test\word_with_img\folder.png',
-         r'F:\test\word_with_img\wiki.jpg',
-         r'F:\test\word_with_img\bigfont.png',
-         r'F:\test\word_with_img\wiki2.jpg',
-         r'F:\test\word_with_img\chi-eng.png',
+         'testimg/text/chi-eng.tiff',
          'testimg/text/eng-chi.png',
          'testimg/text/chi0.png',]
     
-    imsrc = cv2.imread(f[-1])
+    imsrc = cv2.imread(f[0])
     img = cv2.cvtColor(imsrc, cv2.COLOR_BGR2GRAY)
     
     #原图像
@@ -136,7 +129,7 @@ def get_res_img():
     
     imshow('rect', rect, True)
     
-    print 'verticalProjection = ',verticalProjection(rect)
+    verticalProjection(rect)
     
     
     
