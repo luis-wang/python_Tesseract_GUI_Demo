@@ -1,0 +1,15 @@
+
+C++: void HoughLinesP(InputArray image, OutputArray lines, double rho, double theta, int threshold, double minLineLength=0, double maxLineGap=0 )
+
+Python: cv2.HoughLinesP(image, rho, theta, threshold[, lines[, minLineLength[, maxLineGap]]]) → lines
+    Parameters:	
+
+        image – 8-bit, single-channel binary source image. The image may be modified by the function.
+        lines – Output vector of lines. Each line is represented by 
+        a 4-element vector (x_1, y_1, x_2, y_2) , where (x_1,y_1) and (x_2, y_2) 
+        are the ending points of each detected line segment.
+        rho – Distance resolution of the accumulator in pixels.
+        theta – Angle resolution of the accumulator in radians.
+        threshold – Accumulator threshold parameter. Only those lines are returned that get enough votes ( >\texttt{threshold} ).
+        minLineLength – Minimum line length. Line segments shorter than that are rejected.
+        maxLineGap – Maximum allowed gap between points on the same line to link them.

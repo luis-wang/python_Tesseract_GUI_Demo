@@ -1,0 +1,8 @@
+
+这篇文章非常好：Document Image Applications.pdf
+
+http://felix.abecassis.me/2011/10/opencv-bounding-box-skew-angle/
+
+
+http://stackoverflow.com/questions/11464397/image-preprocessing-for-text-recognition
+

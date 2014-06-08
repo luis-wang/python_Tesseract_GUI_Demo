@@ -1,0 +1,8 @@
+1.找出水平线，并去掉：
+http://stackoverflow.com/questions/19094642/removing-long-horizontal-vertical-lines-from-edge-image-using-opencv
+
+
+
+
+
+
