@@ -49,8 +49,12 @@ if __name__ == '__main__':
     mser = cv2.MSER()
 
     #ret, img = cam.read()
-    img = cv2.imread('img/eng_text.png')
+    #img = cv2.imread('img/eng_text.png')
+    img = cv2.imread(r'F:\Recovery\bigchi.png')
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    
+    
+    
     vis = img.copy()
 
     regions = mser.detect(gray, None)
