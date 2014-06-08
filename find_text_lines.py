@@ -148,8 +148,8 @@ def get_res_img():
     #tmpfile = r'F:\test\tempfiles\%s.jpg'%str(uuid.uuid4())
     tmpfile = r'E:\2kkkkk\ocr\tempfiles\%s.jpg'%str(uuid.uuid4())
     
-    #cv2.imwrite(tmpfile, imsrc)
-    #return tmpfile        
+    cv2.imwrite(tmpfile, rect)
+    return tmpfile        
 
 
 if __name__ == '__main__':

@@ -252,7 +252,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     def on_pushButtonLoad_pressed(self):
         "打开图片的事件"
         
-        '''
+        
         input_dir = sett.readSetting('images/input_dir')
         image = QFileDialog.getOpenFileName(self,
                     u'打开图片文件',
@@ -265,9 +265,15 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             return
         self.load_image(image)
         sett.storeSetting('images/input_dir', os.path.dirname(str(image)));
+        
+        
         '''
         from find_text_lines import get_res_img
         self.load_image(get_res_img())
+        '''
+        
+        
+        
 
     @pyqtSignature('')
     def on_pushButtonRestart_pressed(self):
