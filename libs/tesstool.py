@@ -2,6 +2,16 @@
 # -*- coding: utf-8 -*-
 
 """Library with tools related to tesseract
+
+以下参数可以增加日文和中文的识别率
+
+chop_enable                         T
+use_new_state_cost                  F
+segment_segcost_rating              F
+enable_new_segsearch            0
+language_model_ngram_on         0
+textord_force_make_prop_words       F
+
 """
 
 __author__ = u'Zdenko Podobný <zdenop@gmail.com>'
@@ -49,7 +59,9 @@ def get_tessdata_prefix():
     return tessdata_prefix
 
 def get_tesseract(search_path='.'):
-    """ Get tesseract handle
+    """ 
+    #Get tesseract handle
+    #取得句柄
     """
     if sys.platform == 'win32':
         lib_name = 'libtesseract303'

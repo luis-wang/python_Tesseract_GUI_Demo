@@ -15,6 +15,10 @@ APPGROUP = u'tesseract'
 conFile = u'pyTesseractDemo.ini'
 
 def configFile():
+    """
+    #获取当前系统的配置文件地址 
+    C:\Users\Administrator\AppData\Roaming\tesseract\pyTesseractDemo.ini
+    """
     if platform.startswith("win") or name == "nt":
         try:
             import pywintypes
@@ -73,6 +77,13 @@ def main():
     print 'Last used filename is: ', readSetting('images/last_filename')
     print 'language:', readSetting('language'), type(readSetting('language')),
     print 'tests ended...'
+    
+def main2():
+    print platform
+    print name
+    print environ['APPDATA']
+    print configFile()
 
 if __name__ == '__main__':
     main()
+    main2()
