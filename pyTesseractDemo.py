@@ -15,9 +15,10 @@ import sys
 import ctypes
 import locale
 
-from PyQt4.QtGui import (QApplication, QMainWindow, QStyleFactory, QFileDialog,
-                         QPixmap, QColor, QPen, QBrush, QTextCursor, QStyle,
-                         QTransform)
+from PyQt4.QtGui import (QApplication, QMainWindow, QStyleFactory, 
+                         QFileDialog, QPixmap, QColor, QPen, QBrush, 
+                         QTextCursor, QStyle, QTransform)
+
 from PyQt4.QtCore import (Qt, QCoreApplication, pyqtSignature, SIGNAL,
                           QVariant, QEvent)
 
@@ -41,15 +42,16 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         QApplication.setStyle(QStyleFactory.create('cleanlooks'))
         self.setupUi(self)
         self.scene = CustomGraphicsScene()
+        #当加载图像时触发此事件
         self.connect(self.scene, SIGNAL("dropped_to_scene(QString)"), self.load_image)
         
         self.graphicsView.setScene(self.scene)
         self.scene.installEventFilter(self)
         self.graphicsView.setBackgroundBrush(QBrush(Qt.gray, Qt.BDiagPattern))
-        quit_icon = QApplication.style().standardIcon(
-                        QStyle.SP_DialogCloseButton)
+        quit_icon = QApplication.style().standardIcon( QStyle.SP_DialogCloseButton)
         self.pushButtonQuit.setIcon(quit_icon)
         self.setWindowTitle('Analyze & ORC image with tesseract and leptonica')
+        
         self.actionZoomOut.triggered.connect(self.zoomOut)
         self.actionZoomIn.triggered.connect(self.zoomIn)
         self.actionZoomTo1.triggered.connect(self.zoomTo1)
@@ -139,6 +141,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             return
         self.api = self.tesseract.TessBaseAPICreate()
         tessdata_prefix = tess.get_tessdata_prefix()
+        
+        print 'tessdata_prefix = ',tessdata_prefix
+        
         #current_locale = locale.getlocale()  # Save current locale
         # Switch to C locale to handle
         #  Error: Illegal min or max specification!

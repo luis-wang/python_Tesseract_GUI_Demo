@@ -1,0 +1,10 @@
+
+进入到目录 D:\install\Tesseract-OCR30202
+
+e.g1
+tesseract img\chinese1-big.png chinese1-big -l chi_sim
+
+e.g2:
+
+tesseract D:\install\Tesseract-OCR30202\img\chi\chi_only2.jpg 
+ D:\install\Tesseract-OCR30202\img\chi\chi_only2 -l chi_sim
