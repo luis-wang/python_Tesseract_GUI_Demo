@@ -6,8 +6,7 @@ MSER detector demo
 mser.py [<video source>]
 
 ESC   - exit
-
-
+Maximally stable extremal region extractor
 
 
 forked from python2/mser.py
