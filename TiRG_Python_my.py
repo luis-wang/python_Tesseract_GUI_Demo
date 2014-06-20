@@ -310,10 +310,14 @@ if __name__ == '__main__':
          r'F:\test\word_with_img\wiki.jpg',
          r'F:\test\word_with_img\bigfont.png',
          r'F:\test\word_with_img\wiki2.jpg',
-         'img/222t.jpg',
-         'img/eng1.png', 
+         'images/8509_001.4B.tif',
+         'testimg/text/chi-eng.tiff', 
+         'testimg/text/222.jpg', 
+         'testimg/text/4.jpg',
+         'testimg/text/chi0.png',
+         'testimg/text/55.jpg',
          'img/u.jpg']
-    fn = f[3]
+    fn = f[-2]
     ret = text_detector(fn)    
     
     
